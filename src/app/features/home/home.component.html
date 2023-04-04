@@ -1,0 +1,40 @@
+<main class="container">
+  <h1 class="title">{{ title }}</h1>
+  <div class="options">
+    <select [(ngModel)]="select">
+      <option value="All regions">All regions</option>
+      <option value="Americas">Americas</option>
+      <option value="Africa">Africa</option>
+      <option value="Asia">Asia</option>
+      <option value="Europe">Europe</option>
+      <option value="Oceania">Oceania</option>
+    </select>
+    <button mat-raised-button color="primary" (click)="onRegion(select)">
+      Filter
+    </button>
+  </div>
+  <section class="cards">
+    <ul>
+      <li class="card {{ item.region }}" *ngFor="let item of homeModel">
+        <div class="card_int">
+          <div class="front">
+            <img
+              class="card_flags"
+              src="{{ item.flags.svg }}"
+              alt="Bandeiras"
+            />
+          </div>
+          <div class="background">
+            <p>Name: {{ item.name.common }}</p>
+            <p>Region: {{ item.region }}</p>
+            <p>Subregion: {{ item.subregion }}</p>
+            <p>Capital: {{ item.capital }}</p>
+            <button mat-raised-button routerLink="/maps/{{ item.name.common }}">
+              Maps
+            </button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+</main>
