@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HomeService } from 'src/app/shared/services/home.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { key } from 'src/assets/key';
+import { key } from 'src/key';
 
 @Component({
   selector: 'app-maps',
