@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HomeService } from 'src/app/shared/services/home.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
-
+import { key } from 'src/assets/key';
 
 @Component({
   selector: 'app-maps',
@@ -15,14 +15,13 @@ export class MapsComponent  implements OnInit{
 
   homeModel!: HomeModel 
 
-  cidades: string = ''
+  url: string = ''
 
-  
   constructor(
     
     private homeService: HomeService,
     private activeRoute: ActivatedRoute,
-    private sanitizer : DomSanitizer
+    private sanitizer : DomSanitizer,
   ) {
 
   }
@@ -33,8 +32,14 @@ export class MapsComponent  implements OnInit{
 
     this.homeService.readById(id).subscribe(data => {
       this.homeModel = (data as any)[0]
+
+      this.url = `https://www.google.com/maps/embed/v1/place?key=${key.key}&q=${this.homeModel.name.common}`
     })
     
+  }
+
+  securityUrl(){
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.url)
   }
 
 
