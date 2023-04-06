@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HomeModel } from 'src/app/features/home/home.model';
 
@@ -14,7 +15,8 @@ export class HomeService {
   urlBase: string = 'https://restcountries.com/v3.1/all'
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
     ) { }
 
 
@@ -32,6 +34,10 @@ export class HomeService {
     const url = `https://restcountries.com/v3.1/name/${name}`
 
     return this.http.get<HomeModel>(url)
+  }
+
+  onBack() {
+    this.router.navigate(['/home'])
   }
 
 }

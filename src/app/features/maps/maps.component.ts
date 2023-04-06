@@ -1,5 +1,5 @@
 import { HomeModel } from 'src/app/features/home/home.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HomeService } from 'src/app/shared/services/home.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -16,6 +16,8 @@ export class MapsComponent  implements OnInit{
   homeModel!: HomeModel 
 
   url: string = ''
+
+  progressBar: boolean = true
 
   constructor(
     
@@ -34,12 +36,19 @@ export class MapsComponent  implements OnInit{
       this.homeModel = (data as any)[0]
 
       this.url = `https://www.google.com/maps/embed/v1/place?key=${key.key}&q=${this.homeModel.name.common}`
+
+      this.progressBar = !this.progressBar
+      
     })
     
   }
 
   securityUrl(){
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.url)
+  }
+
+  onBack(){
+    this.homeService.onBack()
   }
 
 

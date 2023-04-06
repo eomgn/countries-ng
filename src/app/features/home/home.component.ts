@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit{
 
   regions: string[] = []
 
+  progressBar: boolean = true
+
   homeModel: HomeModel[] = [ {
     name: {
       common: ''
@@ -37,11 +39,18 @@ export class HomeComponent implements OnInit{
 
     if(this.select == 'All regions') {
       this.homeService.getAll().subscribe(data => {
+
         this.homeModel = data
+
+        this.progressBar = !this.progressBar
+
       })
     } else {
       this.onRegion(this.select)
+      this.progressBar = !this.progressBar
+
     }
+
   }
 
 
@@ -49,12 +58,18 @@ export class HomeComponent implements OnInit{
   onRegion(region: string) {
 
     if(this.select === 'All regions') {
+
       this.homeService.getAll().subscribe(data => {
-        this.homeModel = data
+
+      this.homeModel = data
+
       })
     } else {
     this.homeService.getRegion(region).subscribe(data => {
+
       this.homeModel = data
+
     })
-  }}
+
+  }} 
 }

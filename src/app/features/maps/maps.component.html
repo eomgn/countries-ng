@@ -1,10 +1,11 @@
-<button mat-raised-button color="warn">Back</button>
-
 <div class="container">
+
+<button (click)="onBack()" class="button" mat-raised-button color="warn">Back</button>
+
+<mat-progress-bar *ngIf="progressBar"  mode="indeterminate"></mat-progress-bar>
   <iframe
     class="maps"
     frameborder="0"
-    style="border: 0"
     referrerpolicy="no-referrer-when-downgrade"
     [src]="securityUrl()"
     allowfullscreen

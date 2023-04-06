@@ -1,18 +1,27 @@
 <main class="container">
+
   <h1 class="title">{{ title }}</h1>
-  <div class="options">
-    <select [(ngModel)]="select">
-      <option value="All regions">All regions</option>
-      <option value="Americas">Americas</option>
-      <option value="Africa">Africa</option>
-      <option value="Asia">Asia</option>
-      <option value="Europe">Europe</option>
-      <option value="Oceania">Oceania</option>
-    </select>
-    <button mat-raised-button color="primary" (click)="onRegion(select)">
-      Filter
-    </button>
-  </div>
+  
+    <div class="options">
+      <mat-form-field appearance="fill" class="select">
+        <mat-label>Select Region</mat-label>
+        <mat-select [(ngModel)]="select">
+          <mat-option value="All regions">All regions</mat-option>
+          <mat-option value="Americas">Americas</mat-option>
+          <mat-option value="Africa">Africa</mat-option>
+          <mat-option value="Asia">Asia</mat-option>
+          <mat-option value="Europe">Europe</mat-option>
+          <mat-option value="Oceania">Oceania</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="onRegion(select)">
+        Filter
+      </button>
+    </div>
+
+  <mat-progress-bar *ngIf="progressBar"  mode="indeterminate"></mat-progress-bar>
+
   <section class="cards">
     <ul>
       <li class="card {{ item.region }}" *ngFor="let item of homeModel">
@@ -29,7 +38,7 @@
             <p>Region: {{ item.region }}</p>
             <p>Subregion: {{ item.subregion }}</p>
             <p>Capital: {{ item.capital }}</p>
-            <button mat-raised-button routerLink="/maps/{{ item.name.common }}">
+            <button mat-raised-button routerLink="/maps/{{ item.name.common }}" >
               Maps
             </button>
           </div>

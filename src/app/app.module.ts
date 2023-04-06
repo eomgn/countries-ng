@@ -19,6 +19,9 @@ import { FooterComponent } from './core/components/footer/footer.component';
 import { HomeComponent } from './features/home/home.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MapsComponent } from './features/maps/maps.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
+
 
 
 
@@ -38,7 +41,9 @@ import { MapsComponent } from './features/maps/maps.component';
     HttpClientModule,
     FormsModule,
     MatButtonModule,
-    RouterModule
+    RouterModule,
+    MatProgressBarModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
